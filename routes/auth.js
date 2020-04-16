@@ -3,6 +3,13 @@ let router=express.Router();
 const mongoose=require('mongoose');
 const User=mongoose.model('User');
 const bcrypt = require('bcryptjs');
+const jwt=require('jsonwebtoken');
+const {JWT_SECRET}=require('../keys')
+const isLoggedIn=require('../middlewares/auth')
+router.get('/protected',isLoggedIn,(req,res)=>{
+    const user=req.user;
+    res.send(`Welcome, ${user.name} to Instagram!`);
+})
 router.get('/',(req,res)=>{
     res.send('Hello from auth')
 })
@@ -15,7 +22,8 @@ router.post('/signin',(req,res)=>{
         bcrypt.compare(password,user.password).then((response) => {
             if(!response)
                 return res.status(422).json({error:'Invalid Email or Password!'})
-            res.redirect('/')
+            const token=jwt.sign({_id:user._id},JWT_SECRET);
+            res.json({token});
         });
     }).catch((err)=>{
         return res.status(422).json({error:'Invalid Email or Password!'});

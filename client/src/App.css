@@ -2,6 +2,9 @@
 a{
     color:black !important;
 }
+body{
+    background-color: #fafafa;
+}
 .auth-card{
     min-width: 350px;
     max-width: 500px;
@@ -61,4 +64,27 @@ a{
     min-width: 300px;
     margin:1em;
     border: 1px solid grey;
+}
+.my-card{
+    width: 40%;
+    min-width: 450px;
+    height: 80vh;
+    margin:50px auto;
+}
+.input-field1{
+    border-bottom: 0.5px solid	#E8E8E8 !important;
+  }
+  .input-field1:focus{
+    box-shadow: 0 1px 0 0 #E8E8E8 !important;
+  }
+.img{
+    border-radius:50% !important;
+    border:2px solid red;
+    padding:2px;
+    width:40px !important;
+    height:40px;
+    margin-right:10px;
+}
+.card-content{
+    padding-left: 10px !important;
 }

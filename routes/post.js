@@ -16,16 +16,22 @@ router.get('/me',isLoggedIn,(req,res)=>{
     .then(posts=>res.json(posts))
     .catch(error=>res.json({error}));
 })
-router.post('/create',(req,res)=>{
+router.post('/create',isLoggedIn,(req,res)=>{
     const {title,body,url}=req.body;
+    if(!title||!body||!url){
+        res.json({'error':'complete all fields!'})
+        return;
+    }
     req.user=_.pick(req.user,['_id','name','email'])
     const post =new Post({
         title,body,photo:url,postedBy:req.user
     })
     post.save().then((post)=>{
         post=_.pick(post,['title','photo','body','postedBy'])
-        res.json({post});
-    }).catch((err)=>res.json('error'));
+        res.json({'message':'Success!'});
+    }).catch((err)=>{
+        // console.log(err);
+        res.json('error')});
 })
 
 module.exports=router

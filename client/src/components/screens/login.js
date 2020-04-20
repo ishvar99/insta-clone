@@ -15,10 +15,13 @@ const Login =()=>{
         }).then((res)=>{
             return res.json()
         }).then((data)=>{
+            console.log(data);
             if(data.error){
                 M.toast({html: data.error,classes:'#d32f2f red darken-2'})
             }
             else if(data.message){
+               
+                localStorage.setItem('token',data.token)
                 M.toast({html: data.message,classes:'#43a047 green darken-1'})
                 history.push('/')
             }

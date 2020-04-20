@@ -1,10 +1,36 @@
-import React,{useState} from 'react';
-
+import React,{useState,useEffect} from 'react';
+import M from 'materialize-css';
+import {useHistory} from 'react-router-dom'
 const CreatePost=()=>{
+  
+  const history=useHistory();
   const [title,setTitle]=useState("");
   const [body,setBody]=useState("");
   const [image,setImage]=useState("");
   const [url,setUrl]=useState("")
+  useEffect(()=>{
+    if(url){
+      
+    fetch('/post/create',{
+      method:'post',
+      headers: {
+        "Content-Type": "application/json",
+        "auth":localStorage.getItem('token')
+      },
+      body:JSON.stringify({title,body,url})
+    }).then((res)=>{
+      return res.json()
+    }).then((data)=>{
+      if(data.error){
+        M.toast({html: data.error,classes:'#d32f2f red darken-2'})
+    }
+    else if(data.message){
+        M.toast({html: data.message,classes:'#43a047 green darken-1'})
+        history.push('/')
+    }
+    })
+    }
+  },[url])
   const postImage=()=>{
     const formData = new FormData();
     formData.append('file',image)
@@ -16,16 +42,10 @@ const CreatePost=()=>{
     })
     .then((data)=>{
       setUrl(data.secure_url)
-      fetch('/post/create',{
-        method:'post',
-        body:JSON.stringify({title,body,url})
-      }).then((res)=>{
-        return res.json()
-      }).then((data)=>{
-        console.log(data);
-      })
+      
     })
-    .catch((err)=>console.log(err))
+    .catch((err)=>console.log(err));
+
   }
     return (
         <div>

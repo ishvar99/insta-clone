@@ -41,8 +41,10 @@ router.post('/signup',(req,res)=>{
                 name,email,password:hash
             });
             user.save().then(()=>{
-                res.json({message:'user saved to database'})
-            }).catch(err=>res.json({error:err}))
+                res.json({message:'Success!'})
+            }).catch(err=>{
+                res.json({error:"Error!"})
+            })
           });
       }).catch((err)=>console.log(err));
 })

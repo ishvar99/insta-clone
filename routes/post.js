@@ -16,16 +16,16 @@ router.get('/me',isLoggedIn,(req,res)=>{
     .then(posts=>res.json(posts))
     .catch(error=>res.json({error}));
 })
-router.post('/create',isLoggedIn,(req,res)=>{
-    const {title,body}=req.body;
+router.post('/create',(req,res)=>{
+    const {title,body,url}=req.body;
     req.user=_.pick(req.user,['_id','name','email'])
     const post =new Post({
-        title,body,postedBy:req.user
+        title,body,photo:url,postedBy:req.user
     })
     post.save().then((post)=>{
         post=_.pick(post,['title','photo','body','postedBy'])
         res.json({post});
-    }).catch((err)=>console.log(err));
+    }).catch((err)=>res.json('error'));
 })
 
 module.exports=router

@@ -24,7 +24,7 @@ router.post('/signin',(req,res)=>{
             if(!response)
                 return res.status(422).json({error:'Invalid Email or Password!'})
             const token=jwt.sign({_id:user._id},JWT_SECRET);
-            res.json({message:"Success!",token});
+            res.json({message:"Success!",token,user});
         });
     }).catch((err)=>{
         return res.status(422).json({error:'Invalid Email or Password!'});

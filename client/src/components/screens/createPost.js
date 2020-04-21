@@ -9,6 +9,7 @@ const CreatePost=()=>{
   const [image,setImage]=useState("");
   const [url,setUrl]=useState("")
   useEffect(()=>{
+    console.log(url);
     if(url){
       
     fetch('/post/create',{
@@ -32,6 +33,11 @@ const CreatePost=()=>{
     }
   },[url])
   const postImage=()=>{
+    M.Toast.dismissAll();
+    if(!title||!body||!image){
+      M.toast({html:'Complete all fields!',classes:'#d32f2f red darken-2'})
+      return;
+    }
     const formData = new FormData();
     formData.append('file',image)
     formData.append('upload_preset','insta-clone')

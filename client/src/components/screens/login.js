@@ -1,7 +1,10 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
 import {Link,useHistory} from 'react-router-dom';
+import {UserContext} from '../../App';
 import M from 'materialize-css';
+
 const Login =()=>{
+    const {state,dispatch}=useContext(UserContext);
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const history=useHistory();
@@ -22,6 +25,8 @@ const Login =()=>{
             else if(data.message){
                
                 localStorage.setItem('token',data.token)
+                localStorage.setItem('user',{user:data.user})
+                dispatch({type:"USER",payload:data.user});
                 M.toast({html: data.message,classes:'#43a047 green darken-1'})
                 history.push('/')
             }

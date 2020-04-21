@@ -1,26 +1,42 @@
-import React from 'react';
-
+import React,{useState,useEffect} from 'react';
 const Home =()=>{
+    const [data,setData]=useState([]);
+    useEffect(()=>{
+        fetch('/post',{
+            headers:{
+                'auth':localStorage.getItem('token')
+            }
+        }).then((res)=>res.json())
+        .then((result)=>{
+            setData(result.posts);
+        })
+    },[])
     return (
         <div >
-            <div className="card my-card">
+            {
+         data.map((item)=>{
+             return(
+                <div className="card my-card" key={item._id}>
                 <div style={{display:'flex',padding:'20px 0 10px 10px',borderBottom:'1px solid lightgrey'}} className="card-image">
         
-                    <img className="img" src="https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555924665/shape/mentalfloss/459405241.jpg"/>
+                    <img className="img" src={item.photo}/>
                 
-                    <strong style={{marginTop:'7px'}}><span>Ishan</span></strong>
+                    <strong style={{marginTop:'7px'}}><span>{item.postedBy.name}</span></strong>
                 </div>
                 <div>
-                    <img  style={{width:'100%',height:'350px'}} src="https://bit.ly/3aiFSBu"/>
+                    <img  style={{width:'100%',height:'350px'}} src={item.photo}/>
                 </div>
                 <div className="card-content">
-                    <strong><span>Sunset</span></strong>
-                    <p>This is amazing view of sunset</p>
+                    <strong><span>{item.title}</span></strong>
+                    <p>{item.body}</p>
                     <br/>
                     <input className="input-field1" type="text" placeholder="Add a comment..."/>
                 </div>
                 
             </div>
+             )
+            })
+            }
         </div>
         
     )

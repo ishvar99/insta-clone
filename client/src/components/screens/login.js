@@ -25,7 +25,7 @@ const Login =()=>{
             else if(data.message){
                
                 localStorage.setItem('token',data.token)
-                localStorage.setItem('user',{user:data.user})
+                localStorage.setItem('user',JSON.stringify(data.user))
                 dispatch({type:"USER",payload:data.user});
                 M.toast({html: data.message,classes:'#43a047 green darken-1'})
                 history.push('/')

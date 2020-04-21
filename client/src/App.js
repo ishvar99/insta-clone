@@ -1,6 +1,6 @@
 import React,{createContext,useReducer, useEffect, useContext} from 'react';
 import Navbar from './components/navbar'
-import {BrowserRouter,Route,useHistory} from 'react-router-dom'
+import {BrowserRouter,Route,useHistory,Switch} from 'react-router-dom'
 import Home from './components/screens/home'
 import Login from './components/screens/login'
 import Signup from './components/screens/signup'
@@ -16,6 +16,7 @@ const Routing =()=>{
 const {state,dispatch}=useContext(UserContext);
   useEffect(()=>{
     const user=JSON.parse(localStorage.getItem('user'));
+    console.log(typeof(user));
     if(user){
       dispatch({type:'USER',payload:user});
       history.push('/')   
@@ -24,7 +25,7 @@ const {state,dispatch}=useContext(UserContext);
     history.push('/signin')
   },[])
   return (
-    <switch>
+    <Switch>
   <Route exact path="/" >
   <Home />
   </Route>
@@ -40,7 +41,7 @@ const {state,dispatch}=useContext(UserContext);
   <Route path="/create-post">
     <CreatePost />
   </Route>
-  </switch>);
+  </Switch>);
 }
 function App() {
   const [state,dispatch]=useReducer(userReducer,initialState)

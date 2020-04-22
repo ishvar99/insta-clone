@@ -18,7 +18,6 @@ const {state,dispatch}=useContext(UserContext);
     const user=JSON.parse(localStorage.getItem('user'));
     if(user){
       dispatch({type:'USER',payload:user});
-      history.push('/')   
     }
     else
     history.push('/signin')
@@ -34,7 +33,7 @@ const {state,dispatch}=useContext(UserContext);
   <Route path="/signup">
     <Signup />
   </Route>
-  <Route path="/profile">
+  <Route path={state?"/profile":"/signin"}>
     <Profile />
   </Route>
   <Route path="/create-post">

@@ -23,7 +23,10 @@ body{
     border-bottom: 1px solid  #64b5f6 !important;
     box-shadow: 0 1px 0 0 #64b5f6 !important;
   }
-
+  .input-field input[type=password]:focus {
+    border-bottom: 1px solid  #64b5f6 !important;
+    box-shadow: 0 1px 0 0 #64b5f6 !important;
+  }
 .container{
     margin-top: 25px;
     padding-bottom: 50px;

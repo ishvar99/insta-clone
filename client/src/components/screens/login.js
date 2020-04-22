@@ -4,7 +4,7 @@ import {UserContext} from '../../App';
 import M from 'materialize-css';
 
 const Login =()=>{
-    const {state,dispatch}=useContext(UserContext);
+    const {dispatch}=useContext(UserContext);
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const history=useHistory();

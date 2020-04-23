@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+i, i::after, i::before {
+	-webkit-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-app-region: no-drag;
+	cursor: default;
+}
 a{
     color:black !important;
 }
@@ -71,7 +77,7 @@ body{
 .my-card{
     width: 40%;
     min-width: 450px;
-    height: 80vh;
+    height: auto;
     margin:50px auto;
 }
 .input-field1{
@@ -89,5 +95,22 @@ body{
     margin-right:10px;
 }
 .card-content{
-    padding-left: 10px !important;
+    padding-top:0px !important;
+    padding-left:10px !important;
+}
+.post-image{
+    overflow: hidden;
+    position: relative;
+    /* cursor: pointer; */
+}
+.post-image i{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color:red;
+    opacity: 0.8;
+    z-index: 99;
+    font-size: 100px;
+    display: none;
 }

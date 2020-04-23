@@ -13,6 +13,14 @@ const postSchema =new mongoose.Schema({
         type:String,
         required:true
     },
+    isLiked:{
+        type:Boolean,
+        default:false
+    },
+    likes:[
+        {type:mongoose.Schema.Types.ObjectId,
+        ref:'User'}
+    ],
     postedBy:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'

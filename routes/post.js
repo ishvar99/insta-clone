@@ -37,7 +37,7 @@ router.put('/like',isLoggedIn,(req,res)=>{
     const {postId}=req.body;
     Post.findOneAndUpdate(
         {_id:postId},
-       { $push:{'likes':req.user._id}}
+       { $addToSet:{'likes':req.user._id}}
     ,{new:true}).populate('postedBy','_id name').exec(function(err,data){
     if(err)
         console.log(err);

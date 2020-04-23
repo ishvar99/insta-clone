@@ -91,7 +91,7 @@ const Home =()=>{
                 </div>
                 <div className="post-image">
                     <i class="large material-icons">favorite</i>
-                    <img  style={{width:'100%',height:'350px'}} src={item.photo}/>
+                    <img onDoubleClick={()=>updateLikeStatus(item._id,false)} style={{width:'100%',height:'350px'}} src={item.photo}/>
                 </div>
                 
                 <div className="card-content">

@@ -99,11 +99,12 @@ body{
     padding-top:0px !important;
     padding-left:0px !important;
 }
+.card-content i{
+    cursor: pointer;
+} 
 .post-image{
-   
     overflow: hidden;
     position: relative;
-    /* cursor: pointer; */
 }
 .post-image img{
     object-fit: cover
@@ -119,3 +120,4 @@ body{
     font-size: 100px;
     display: none;
 }
+

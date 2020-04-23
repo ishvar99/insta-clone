@@ -35,10 +35,9 @@ router.post('/create',isLoggedIn,(req,res)=>{
 })
 router.put('/like',isLoggedIn,(req,res)=>{
     const {postId}=req.body;
-    const {fav}=req.body;
     Post.findOneAndUpdate(
         {_id:postId},
-       { $push:{'likes':req.user._id},isLiked:fav}
+       { $push:{'likes':req.user._id}}
     ,{new:true}).populate('postedBy','_id name').exec(function(err,data){
     if(err)
         console.log(err);
@@ -46,14 +45,17 @@ router.put('/like',isLoggedIn,(req,res)=>{
     res.json(data)        
 })
 })
-   
 router.put('/unlike',isLoggedIn,(req,res)=>{
-    Post.findByIdAndUpdate(req.body.postId,{
-        $pull:{'likes':req.user._id}
-    },{new:true}).exec(function(err,data){
+    const {postId}=req.body;
+    Post.findOneAndUpdate(
+        {_id:postId},
+       { $pull:{'likes':req.user._id}}
+    ,{new:true}).populate('postedBy','_id name').exec(function(err,data){
     if(err)
-        res.json({error:err})
+        console.log(err);
+    console.log(data);
     res.json(data)        
 })
-})
+})  
+
 module.exports=router

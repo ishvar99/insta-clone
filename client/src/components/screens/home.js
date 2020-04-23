@@ -25,6 +25,7 @@ const Home =()=>{
             }
         }).then((res)=>res.json())
         .then((result)=>{
+            console.log(result)
             setData(result.posts);
         })
     },[])
@@ -61,21 +62,22 @@ const Home =()=>{
                     <strong style={{marginTop:'7px'}}><span>{item.postedBy.name}</span></strong>
                 </div>
                 <div className="post-image">
-                <i class="large material-icons">favorite</i>
+                    <i class="large material-icons">favorite</i>
                     <img  style={{width:'100%',height:'350px'}} src={item.photo}/>
-                    
                 </div>
                 
                 <div className="card-content">
-                    <div>
-                        <LikeButton onClick={()=>console.log('CLICKED')}></LikeButton>
+                    <div style={{display:'flex'}}>
+                        <i style={item.isLiked?{color:'#E2264D',padding:'8px 5px 0 8px',fontSize:'27px'}:{fontSize:'27px',padding:'8px 5px 0 8px'}} onClick={()=>updateLikeStatus(item._id,!item.isLiked)} class="material-icons">{item.isLiked?'favorite':'favorite_border'}</i>
+                        <i style={{marginTop:'10px',fontSize:'23px',paddingRight:'13px',paddingLeft:'9px'}} class="far fa-comment"></i>
+                        <i style={{marginTop:'9px',fontSize:'27px'}} class="fab fa-telegram-plane"></i>
                     {/* <i onClick={()=>updateLikeStatus(item._id,!item.isLiked)} className="material-icons like" style={{color:"#ED4956"}}>{item.isLiked?'favorite':'favorite_border'}</i> */}
                         </div>
-                
-                    <strong><span style={{paddingLeft:'12px'}}>{item.title}</span></strong>
-                    <p style={{paddingLeft:'12px'}}>{item.body}</p>
+                    <div style={{paddingLeft:'13px',marginTop:'10px'}}><strong><span>{item.likes.length} likes</span></strong></div>
+                    <strong><span style={{paddingLeft:'13px'}}>{item.title}</span></strong>
+                    <p style={{paddingLeft:'13px'}}>{item.body}</p>
                     <br/>
-                    <input style={{paddingLeft:'12px'}} className="input-field1" type="text" placeholder="Add a comment..."/>
+                    <input style={{marginLeft:'13px'}} className="input-field1" type="text" placeholder="Add a comment..."/>
                 </div>
              
             </div>

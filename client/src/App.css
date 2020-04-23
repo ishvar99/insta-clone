@@ -69,11 +69,12 @@ body{
 }
 
 .item{
-    width: 30%;
+    height: 250px;
     min-width: 300px;
     margin:1em;
     border: 1px solid grey;
 }
+
 .my-card{
     width: 40%;
     min-width: 450px;
@@ -96,20 +97,24 @@ body{
 }
 .card-content{
     padding-top:0px !important;
-    padding-left:10px !important;
+    padding-left:0px !important;
 }
 .post-image{
+   
     overflow: hidden;
     position: relative;
     /* cursor: pointer; */
+}
+.post-image img{
+    object-fit: cover
 }
 .post-image i{
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    color:red;
-    opacity: 0.8;
+    color:#E2264D;
+    opacity: 0.9;
     z-index: 99;
     font-size: 100px;
     display: none;

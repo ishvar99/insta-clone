@@ -39,7 +39,7 @@ router.put('/like',isLoggedIn,(req,res)=>{
     Post.findOneAndUpdate(
         {_id:postId},
        { $push:{'likes':req.user._id},isLiked:fav}
-    ,{new:true}).exec(function(err,data){
+    ,{new:true}).populate('postedBy','_id name').exec(function(err,data){
     if(err)
         console.log(err);
     console.log(data);

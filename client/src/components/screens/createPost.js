@@ -4,7 +4,6 @@ import {useHistory} from 'react-router-dom'
 const CreatePost=()=>{
   
   const history=useHistory();
-  const [title,setTitle]=useState("");
   const [body,setBody]=useState("");
   const [image,setImage]=useState("");
   const [url,setUrl]=useState("")
@@ -18,7 +17,7 @@ const CreatePost=()=>{
         "Content-Type": "application/json",
         "auth":localStorage.getItem('token')
       },
-      body:JSON.stringify({title,body,url})
+      body:JSON.stringify({body,url})
     }).then((res)=>{
       return res.json()
     }).then((data)=>{
@@ -34,7 +33,7 @@ const CreatePost=()=>{
   },[url])
   const postImage=()=>{
     M.Toast.dismissAll();
-    if(!title||!body||!image){
+    if(!body||!image){
       M.toast({html:'Complete all fields!',classes:'#d32f2f red darken-2'})
       return;
     }
@@ -55,9 +54,8 @@ const CreatePost=()=>{
   }
     return (
         <div>
-        <div className="card input-filled" style={{padding:'20px',width:'75%',maxWidth:'600px',height:'350px',margin:'50px auto',textAlign:'center'}}>
-            <input type="text" value={title} onChange={(e)=>setTitle(e.target.value)} className="input-field1" placeholder="Title"/>
-            <input type="text" value={body} onChange={(e)=>setBody(e.target.value)} className="input-field1" placeholder="Body"/>
+        <div className="card input-filled" style={{padding:'20px',width:'75%',maxWidth:'600px',height:'300px',margin:'50px auto',textAlign:'center'}}>
+            <input type="text" value={body} onChange={(e)=>setBody(e.target.value)} className="input-field1" placeholder="Caption"/>
             <div className="file-field input-field">
       <div className="btn">
         <span>Upload Image</span>

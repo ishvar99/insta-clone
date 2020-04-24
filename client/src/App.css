@@ -80,13 +80,22 @@ body{
     min-width: 450px;
     height: auto;
     margin:50px auto;
+    position: relative;
 }
+.input-field2{
+    border-bottom: 0 !important;
+    border-top: 0.5px solid	#E8E8E8 !important;
+}
+.input-field2:focus{
+    box-shadow: 0 0 0 !important;
+  }
 .input-field1{
     border-bottom: 0.5px solid	#E8E8E8 !important;
   }
   .input-field1:focus{
     box-shadow: 0 1px 0 0 #E8E8E8 !important;
   }
+  
 .img{
     border-radius:50% !important;
     border:2px solid red;
@@ -120,4 +129,14 @@ body{
     font-size: 100px;
     display: none;
 }
-
+.comment-box{
+    border:0px;
+    outline: none;
+    padding:12px 20px;
+    overflow: hidden;
+    resize: none;
+    border-top: 1px solid #E8E8E8;
+}
+.comment-box:hover{
+    outline:none;
+}

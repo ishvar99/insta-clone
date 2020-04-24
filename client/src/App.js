@@ -8,7 +8,10 @@ import Profile from './components/screens/profile'
 import CreatePost from './components/screens/createPost';
 import {userReducer} from './reducers/userReducer'
 import {initialState} from './reducers/userReducer'
+import './Materialize/materialize.css';
+import './Font/css/all.css';
 import './App.css';
+
 export const UserContext=createContext();
 
 const Routing =()=>{
